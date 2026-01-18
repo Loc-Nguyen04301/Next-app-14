@@ -1,5 +1,5 @@
-import IconExplore from "@/src/components/icons/IconExplore";
-import IconPlay from "@/src/components/icons/IconPlay";
+import IconExplore from "@/components/icons/IconExplore";
+import IconPlay from "@/components/icons/IconPlay";
 
 export const menuItems: {
   url: string;

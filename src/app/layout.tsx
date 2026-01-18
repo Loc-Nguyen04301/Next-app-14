@@ -1,9 +1,8 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
-import { manrope } from "@/src/components/font";
-import Sidebar from "@/src/components/layouts/Sidebar";
-
+import { manrope } from "@/components/font";
+import Sidebar from "@/components/layouts/Sidebar";
 
 export const metadata: Metadata = {
   title: "Ucademy",
@@ -18,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={manrope.className}>
-        <div className="wrapper grid grid-cols-[300px,minmax(0,1fr)] h-screen">
+        <div className="wrapper grid grid-cols-[300px_minmax(0,1fr)] h-screen">
           <Sidebar />
           <main>{children}</main>
         </div>
