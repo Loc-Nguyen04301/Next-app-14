@@ -1,8 +1,9 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
-import { manrope } from "@/components/font";
-import Sidebar from "@/components/layouts/Sidebar";
+import { manrope } from "@/src/components/font";
+import Sidebar from "@/src/components/layouts/Sidebar";
+
 
 export const metadata: Metadata = {
   title: "Ucademy",
