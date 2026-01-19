@@ -1,7 +1,9 @@
-#Next/font 
+#Next/font
 
-- Import 
-- Khai báo: 
+- Import
+- Khai báo:
 - weight
-- subsets: kiểu chữ, 
+- subsets: kiểu chữ,
 - variable:
+
+#Next/Link

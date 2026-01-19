@@ -1,5 +1,5 @@
+import ActiveLink from "@/components/common/ActiveLink";
 import { menuItems } from "@/consts";
-import Link from "next/link";
 
 const Sidebar = () => {
   return (
@@ -33,13 +33,10 @@ function MenuItem({
 }) {
   return (
     <li>
-      <Link
-        href={url}
-        className="p-3 rounded-md flex items-center gap-3 hover:text-primary hover:bg-primary hover:bg-opacity-10 transition-all"
-      >
+      <ActiveLink url={url}>
         {icon}
         {title}
-      </Link>
+      </ActiveLink>
     </li>
   );
 }
