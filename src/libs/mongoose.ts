@@ -17,7 +17,9 @@ export const connectToDatabase = async () => {
   }
 
   try {
-    await mongoose.connect(mongoUrl, { dbName: "ucademy" });
+    await mongoose.connect(mongoUrl, {
+      dbName: "ucademy",
+    });
     isConnected = true;
     console.log("MongoDB connected successfully");
   } catch (error) {
