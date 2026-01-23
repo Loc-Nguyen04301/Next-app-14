@@ -1,9 +1,10 @@
 import ActiveLink from "@/components/common/ActiveLink";
 import { menuItems } from "@/consts";
+import { UserButton } from "@clerk/nextjs";
 
 const Sidebar = () => {
   return (
-    <div className="p-5 border-r border-r-gray-200">
+    <div className="p-5 border-r border-r-gray-200 flex flex-col">
       <a href="/" className="font-bold text-3xl inline-block mb-5">
         <span className="text-primary">U</span>
         cademy
@@ -18,6 +19,10 @@ const Sidebar = () => {
           ></MenuItem>
         ))}
       </ul>
+      <div className="mt-auto">
+
+        <UserButton />
+      </div>
     </div>
   );
 };
