@@ -1,4 +1,5 @@
 import ActiveLink from "@/components/common/ActiveLink";
+import { ModeToggle } from "@/components/common/ModeToggle";
 import { menuItems } from "@/consts";
 import { UserButton } from "@clerk/nextjs";
 
@@ -20,7 +21,7 @@ const Sidebar = () => {
         ))}
       </ul>
       <div className="mt-auto">
-
+        <ModeToggle />
         <UserButton />
       </div>
     </div>
