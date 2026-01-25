@@ -11,10 +11,14 @@ export async function POST(req: Request) {
   const svix_timestamp = headers().get("svix-timestamp") ?? "";
   const svix_signature = headers().get("svix-signature") ?? "";
 
+  if (!webhookSecret) {
+    throw new Error("WEBHOOK_SECRET not have value");
+  }
   if (!svix_id || !svix_signature || !svix_signature) {
     return new Response("Bad Request", { status: 400 });
   }
-  const body = await req.text();
+  const payload = await req.json();
+  const body = JSON.stringify(payload);
 
   const sivx = new Webhook(webhookSecret);
 
