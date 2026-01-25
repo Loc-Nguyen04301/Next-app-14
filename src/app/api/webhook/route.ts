@@ -7,9 +7,11 @@ import { Webhook } from "svix";
 const webhookSecret: string = process.env.WEBHOOK_SECRET || "your-secret";
 
 export async function POST(req: Request) {
-  const svix_id = headers().get("svix-id") ?? "";
-  const svix_timestamp = headers().get("svix-timestamp") ?? "";
-  const svix_signature = headers().get("svix-signature") ?? "";
+  const headersList = await headers();
+
+  const svix_id = headersList.get("svix-id") ?? "";
+  const svix_timestamp = headersList.get("svix-timestamp") ?? "";
+  const svix_signature = headersList.get("svix-signature") ?? "";
 
   if (!webhookSecret) {
     throw new Error("WEBHOOK_SECRET not have value");
@@ -22,10 +24,10 @@ export async function POST(req: Request) {
 
   const sivx = new Webhook(webhookSecret);
 
-  let msg: WebhookEvent;
+  let event: WebhookEvent;
 
   try {
-    msg = sivx.verify(body, {
+    event = sivx.verify(body, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
@@ -34,10 +36,9 @@ export async function POST(req: Request) {
     return new Response("Bad Request", { status: 400 });
   }
 
-  const evenType = msg.type;
-
-  if (evenType === "user.created") {
-    const { id, username, email_addresses } = msg.data;
+  console.log({ event });
+  if (event.type === "user.created") {
+    const { id, username, email_addresses } = event.data;
     const newUser = await createUser({
       clerkId: id,
       name: username!,
@@ -49,8 +50,6 @@ export async function POST(req: Request) {
       newUser,
     });
   }
-
-  // Rest
 
   return new Response("OK", { status: 200 });
 }
