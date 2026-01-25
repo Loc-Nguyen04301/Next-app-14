@@ -44,7 +44,6 @@ export async function POST(req: Request) {
       message: "Ok",
       newUser,
     });
-    console.log("EvenType:", evenType);
   }
 
   // Rest
