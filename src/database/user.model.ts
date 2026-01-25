@@ -30,6 +30,9 @@ const userSchema = new Schema<User>({
 
   name: {
     type: String,
+    required: true,
+    unique: true,
+    index: true,
     trim: true,
   },
 
@@ -45,6 +48,8 @@ const userSchema = new Schema<User>({
     type: String,
     required: true,
     unique: true,
+    index: true,
+    trim: true,
   },
 
   avatar: {
