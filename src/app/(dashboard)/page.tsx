@@ -7,7 +7,7 @@ const page = async () => {
   const user = await createUser({
     clerkId: "clerk_123",
     username: "Loc Nguyen",
-    email_address: "nguyengiakoc7@gmail.com",
+    email: "nguyengialoc7@gmail.com",
   })
 
   return (
