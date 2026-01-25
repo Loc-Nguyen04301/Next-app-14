@@ -5,19 +5,19 @@ export interface User extends Document {
   clerkId: string;
   name?: string;
   username: string;
-  email_address: string;
+  email: string;
   avatar?: string;
   status?: EUserStatus;
   role?: EUserRole;
   courses?: Schema.Types.ObjectId[];
-  createdAt?: Date;
+  created_at?: Date;
 }
 
 export interface IUserCreateParam {
   clerkId: string;
   name?: string;
   username: string;
-  email_address: string;
+  email: string;
 }
 
 const userSchema = new Schema<User>({
@@ -41,7 +41,7 @@ const userSchema = new Schema<User>({
     trim: true,
   },
 
-  email_address: {
+  email: {
     type: String,
     required: true,
     unique: true,
@@ -69,7 +69,7 @@ const userSchema = new Schema<User>({
       ref: "Course",
     },
   ],
-  createdAt: [
+  created_at: [
     {
       type: Date,
       default: Date.now,
