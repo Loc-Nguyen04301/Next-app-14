@@ -14,15 +14,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { User } from "@/database/user.model";
+
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import slugify from "slugify";
+import { createCourse } from "@/lib/actions/course.actions"
 
 const formSchema = z.object({
   title: z.string().min(10, "Tên khóa học phải có ít nhất 10 ký tự"),
   slug: z.string().optional(),
 });
 
-function CourseAddNew() {
+interface Props {
+  user?: User
+}
+
+const CourseAddNew = ({ user }: Props) => {
+  const router = useRouter();
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -32,7 +43,7 @@ function CourseAddNew() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
       const data = {
@@ -43,14 +54,22 @@ function CourseAddNew() {
             lower: true,
             locale: "vi",
           }),
+        author: user?._id,
       };
-      console.log(data);
-      // await createCourse(values);
+      console.log(data)
+      const res = await createCourse(data);
+      if (!res?.success) {
+        toast.error(`Lỗi không tạo được khóa học`);
+        return;
+      }
+      toast.success("Tạo khóa học thành công");
+      if (res?.data) {
+        router.push(`/manage/course/update?slug=${res.data.slug}`);
+      }
     } catch (error) {
     } finally {
-      setTimeout(() => {
-        setIsSubmitting(false)
-      }, 500)
+      setIsSubmitting(false);
+      form.reset()
     }
   }
 
@@ -98,4 +117,5 @@ function CourseAddNew() {
     </Form>
   );
 }
+
 export default CourseAddNew;

@@ -2,16 +2,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { manrope } from "@/components/font";
-import Sidebar from "@/components/layouts/Sidebar";
 import {
   ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
 } from '@clerk/nextjs'
 import { ThemeProvider } from "@/components/theme-provider";
+import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
   title: "Ucademy",
@@ -34,6 +29,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <ToastContainer />
           </ThemeProvider>
         </body>
       </html>

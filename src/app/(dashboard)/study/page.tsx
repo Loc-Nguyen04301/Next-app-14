@@ -8,9 +8,7 @@ const page = () => {
         <div>
             <Heading>Khu vực khóa học tập</Heading>
             <CourseGrid>
-                <CourseItem></CourseItem>
-                <CourseItem></CourseItem>
-                <CourseItem></CourseItem>
+                abc
             </CourseGrid>
         </div >
     )

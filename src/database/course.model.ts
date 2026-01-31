@@ -123,6 +123,23 @@ const courseSchema = new Schema<ICourse>({
   },
 });
 
-const UserModel = models.User || model<ICourse>("Course", courseSchema);
+export interface ICreateCourseParam {
+  title: string;
+  image: string;
+  intro_url: string;
+  desc: string;
+  price: number;
+  sale_price: number;
+  slug: string;
+  status: ECourseStatus;
+  created_at: Date;
+}
 
-export default UserModel;
+export interface IUpdateCourseParam {
+  slug: string;
+  updateData: Partial<ICourse>;
+}
+
+const CourseModal = models.Course || model<ICourse>("Course", courseSchema);
+
+export default CourseModal;
