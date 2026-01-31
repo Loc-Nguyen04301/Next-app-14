@@ -45,6 +45,9 @@ export async function updateCourse(params: IUpdateCourseParam) {
     await CourseModal.findOneAndUpdate({slug:params.slug}, params.updateData, {new: true})
     
     revalidatePath("/")
+    return {
+       success: true
+    }
   } catch (error) {
     console.log({ error });
   }
