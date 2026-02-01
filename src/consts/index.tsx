@@ -1,6 +1,7 @@
 
 
 import { IconComment, IconExplore, IconOrder, IconPlay, IconStudy, IconUsers } from "@/components/icons";
+import { ECourseStatus } from "@/types/enum";
 import { TMenuItem } from "@/types/index";
 
 export const menuItems: TMenuItem[] = [
@@ -35,3 +36,18 @@ export const menuItems: TMenuItem[] = [
     icon: <IconComment className="size-5" />,
   },
 ];
+
+export const courseStatus: { title: string, value: string }[] = [
+  {
+    title: "Đã duyệt",
+    value: ECourseStatus.APPROVED
+  },
+  {
+    title: "Chờ duyệt",
+    value: ECourseStatus.PENDING
+  },
+  {
+    title: "Từ chối",
+    value: ECourseStatus.REJECTED
+  }
+]

@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 import { useImmer } from "use-immer";
 import { IconAdd } from "../icons";
 import { Textarea } from "../ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 const formSchema = z.object({
   title: z.string().min(10, "Tên khóa học phải có ít nhất 10 ký tự"),
@@ -249,7 +250,18 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Trạng thái</FormLabel>
-                <FormControl></FormControl>
+                <FormControl>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Trạng thái" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="light">LIGHT</SelectItem>
+                      <SelectItem value="dark">DARK</SelectItem>
+                      <SelectItem value="system">SYSTEM</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
